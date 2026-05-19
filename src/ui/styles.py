@@ -1,5 +1,11 @@
-"""应用主题 QSS。"""
+"""应用主题 QSS 样式表。
 
+QSS(Qt Style Sheets)语法与 CSS 类似,这里通过 #objectName 选择器
+精确控制各个面板(侧边栏、内容区、详情面板等)的外观。深色与浅色主题
+共用一套选择器,只在颜色变量上不同。
+"""
+
+# 深色主题:适合长时间使用,默认主题
 DARK_QSS = """
 QWidget {
     background-color: #080A0F;
@@ -297,6 +303,7 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
 }
 """
 
+# 浅色主题:适合白天明亮环境使用
 LIGHT_QSS = """
 QWidget {
     background-color: #EEF2F7;
@@ -598,4 +605,5 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
 
 
 def get_qss(theme: str) -> str:
+    """根据主题名返回对应的 QSS 字符串;未知值一律视为浅色主题。"""
     return DARK_QSS if theme == "dark" else LIGHT_QSS
